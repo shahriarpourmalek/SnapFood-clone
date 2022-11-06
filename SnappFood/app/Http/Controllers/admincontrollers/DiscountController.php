@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admincontrollers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\DiscountRequest;
 use App\Models\Discount;
 use App\Models\FoodsCatgory;
 use Carbon\Carbon;
@@ -9,15 +11,19 @@ use Illuminate\Http\Request;
 
 class DiscountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Discount $discount)
     {
-        $datas = Discount::all();
-        return view('admins.discount-manager.index')->with('discounts',$datas);    }
+
+        return view('admins.discount-manager.index')->with('discounts',$discount::all());    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,17 +42,9 @@ class DiscountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiscountRequest $request)
     {
-        $now = Carbon::now();
-        $request->validate([
-            'title' => 'required',
-            'expire_time' => "required|after:$now",
-            'amount' => 'required|integer|digits_between:1,100'
-        ]);
-
-
-
+        $request->validated();
         Discount::create([
             'title' => $request->title,
             'expire_time' => $request->expire_time,

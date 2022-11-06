@@ -4,9 +4,9 @@
 
 @section('content')
     <div class="mx-auto mt-24 w-[70%]">
-        <form action="/admindashboard/foods-category" method="post" enctype="multipart/form-data">
+        <form action="/admindashboard/foods-category/{{$category->id}}" method="post" enctype="multipart/form-data">
             @csrf
-            @method('POST')
+            @method('PUT')
             <div class="flex flex-col ">
                 <label class="text-black text-2xl  ">Name</label>
                 <input value="{{$category->name}}" name="name" type="text" class="h-[50px] bg-orange-100 rounded-lg ">

@@ -1,21 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admincontrollers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\FoodsCategoryRequest;
 use App\Models\FoodsCatgory;
 use Illuminate\Http\Request;
 
 class FoodsCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FoodsCatgory $foodsCatgory)
     {
-        $datas = FoodsCatgory::all();
-        return view('admins.foods-category.index')->with('categories',$datas);
+
+        return view('admins.foods-category.index')->with('categories',$foodsCatgory::all());
     }
 
     /**
@@ -34,13 +40,9 @@ class FoodsCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FoodsCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'icon' => 'required|mimes:jpg,png,jpeg|max:10096'
-        ]);
+        $request->validated();
 
         $newImageName = time() .'-'.$request->name.'.'.$request->file('icon')->guessExtension();
 
@@ -63,7 +65,7 @@ class FoodsCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admins.foods-category.show',['category'=>FoodsCatgory::find($id)]);
     }
 
     /**
@@ -74,7 +76,7 @@ class FoodsCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = FoodsCatgory::all()->find($id)->first();
+        $category = FoodsCatgory::find($id);
         return view('admins.foods-category.edit')->with('category',$category);
     }
 
@@ -85,8 +87,9 @@ class FoodsCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FoodsCategoryRequest $request, $id)
     {
+        $request->validated();
         $newImageName = time() .'-'.$request->name.'.'.$request->file('icon')->guessExtension();
         FoodsCatgory::where('id',$id)->
         update([

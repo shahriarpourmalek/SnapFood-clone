@@ -13,7 +13,10 @@
         @foreach($categories as $category)
             <div class=" h-[90px] flex flex-row bg-orange-300 rounded-lg border border-white justify-between  ">
                 <div class="flex flex-col justify-center text-2xl text-white  pl-3">
-                    {{$category->name}}
+                    <div class="flex flex-row">  {{$category->name}}
+                        <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center" href="/admindashboard/foods-category/{{$category->id}}">
+                            show                    </a>
+                    </div>
                 </div>
                 <div class="flex flex-col mr-5 gap-2 mt-1">
                     <a class="bg-green-500 text-white rounded-lg h-[30px] w-[50px] flex justify-center" href="/admindashboard/foods-category/{{$category->id}}/edit">

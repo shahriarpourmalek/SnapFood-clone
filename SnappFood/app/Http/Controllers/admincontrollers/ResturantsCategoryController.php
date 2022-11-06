@@ -1,21 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admincontrollers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ResturantCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ResturantsCategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
-        $datas = Category::all();
-        return view('admins.resturant-category.index')->with('categories',$datas);
+        return view('admins.resturant-category.index', ['categories'=>$category::all()]);
     }
 
     /**
@@ -31,29 +36,19 @@ class ResturantsCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ResturantCategoryRequest $request)
     {
 
-
-
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'icon' => 'required|mimes:jpg,png,jpeg|max:10096'
+        $newImageName = time() . '-' . $request->name . '.' . $request->file('icon')->guessExtension();
+        Category::create([
+            'name' => $request->input('name'),
+            'slug' => $request->input('slug'),
+            'icon' => $newImageName
         ]);
-
-        $newImageName = time() .'-'.$request->name.'.'.$request->file('icon')->guessExtension();
-
-
-Category::create([
-   'name' => $request->input('name'),
-   'slug' => $request->input('slug'),
-   'icon' => $newImageName
-]);
-        $request->file('icon')->move(public_path('images/category-images'),$newImageName);
+        $request->file('icon')->move(public_path('images/category-images'), $newImageName);
 
         return redirect('/admindashboard/resturant-category');
 
@@ -62,49 +57,45 @@ Category::create([
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-
+return view('admins.resturant-category.show',['category'=>Category::find($id)]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $category = Category::all()->find($id)->firstOrFail();
-        return view('admins.resturant-category.edit')->with('category',$category);
+        $category = Category::find($id);
+        return view('admins.resturant-category.edit')->with('category', $category);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ResturantCategoryRequest $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'icon' => 'required|mimes:jpg,png,jpeg|max:10096'
-        ]);
+        $request->validated();
 
-        $newImageName = time() .'-'.$request->name.'.'.$request->file('icon')->guessExtension();
-        Category::where('id',$id)->
+        $newImageName = time() . '-' . $request->name . '.' . $request->file('icon')->guessExtension();
+        Category::where('id', $id)->
         update([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'icon' => $newImageName
         ]);
-        $request->file('icon')->move(public_path('images/category-images'),$newImageName);
+        $request->file('icon')->move(public_path('images/category-images'), $newImageName);
 
         return redirect('/admindashboard/resturant-category');
     }
@@ -112,12 +103,12 @@ Category::create([
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $category = Category::all()->find($id)->firstOrFail();
+        $category = Category::find($id);
         $category->delete();
         return redirect('/admindashboard/resturant-category');
 

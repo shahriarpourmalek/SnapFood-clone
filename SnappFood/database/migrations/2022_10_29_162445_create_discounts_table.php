@@ -19,6 +19,8 @@ return new class extends Migration
             $table->dateTime('expire_time');
             $table->integer('amount');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

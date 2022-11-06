@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admincontrollers;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminLoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,15 +14,12 @@ class AdminLoginController extends Controller
         return view('login.admin-login.adminlogin');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(AdminLoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credentials = $request->validated();
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/admindashboard')->with('session','mothafucka');
+            return redirect('/admindashboard');
         }
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

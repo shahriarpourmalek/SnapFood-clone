@@ -25,11 +25,17 @@ return new class extends Migration
             on('foods_category')->
             cascadeOnDelete();
             $table->timestamps();
+            $table->unsignedBigInteger('resturant_id');
+            $table->foreign('resturant_id')
+                ->references('id')
+                ->on('resturants')->cascadeOnDelete();
 
             $table->unsignedBigInteger('discount_id')->nullable();
             $table->foreign('discount_id')
                 ->references('id')
                 ->on('discounts')->cascadeOnDelete();
+            $table->softDeletes();
+
         });
     }
 
