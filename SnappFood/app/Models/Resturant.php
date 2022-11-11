@@ -8,20 +8,29 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Resturant extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'resturants';
     protected $fillable = [
         'name',
         'number',
         'account_number',
-        'city',
         'address',
+        'latitude',
+        'longitude',
         'state'
     ];
-public function foods(){
-    return $this->hasMany(Foods::class);
-}
+protected $hidden = [
+    'created_at',
+    'updated_at',
+    'account_number',
+    'manager_id',
+];
+    public function foods()
+    {
+        return $this->hasMany(Foods::class);
+    }
+
     public function manager()
     {
         return $this->belongsTo(Manager::class);
@@ -29,9 +38,11 @@ public function foods(){
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class,'resturant_category');
+        return $this->belongsToMany(Category::class, 'resturant_category');
     }
-//    public function  address(){
-//        return $this->hasOne(Address::class);
-//    }
+
+    public function schedule()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

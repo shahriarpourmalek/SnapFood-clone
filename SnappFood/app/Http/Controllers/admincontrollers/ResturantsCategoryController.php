@@ -73,8 +73,7 @@ return view('admins.resturant-category.show',['category'=>Category::find($id)]);
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('admins.resturant-category.edit')->with('category', $category);
+        return view('admins.resturant-category.edit')->with('category', Category::find($id));
     }
 
     /**
@@ -108,8 +107,7 @@ return view('admins.resturant-category.show',['category'=>Category::find($id)]);
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+      Category::find($id)->delete();
         return redirect('/admindashboard/resturant-category');
 
     }

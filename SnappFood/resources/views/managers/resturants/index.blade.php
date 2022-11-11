@@ -11,15 +11,18 @@
             </div>
         </a>
     @endif
-    @if(Auth::guard('manager')->user()->resturant()->first())
+    @if($resturant)
     <div class=" h-full flex flex-row bg-orange-300 rounded-lg border border-white justify-between  ">
         <div class="flex flex-col justify-center   pl-3">
             <h3 class="text-2xl text-white">Resturant Name: {{$resturant->name}}</h3>
             <h3 class="text-2xl text-white">Resturant number: {{$resturant->number}}</h3>
             <h3 class="text-2xl text-white">account number: {{$resturant->account_number}}</h3>
-            <h3 class="text-2xl text-white">resturant state: {{$resturant->state}}</h3>
-            <h3 class="text-2xl text-white">resturant city: {{$resturant->city}}</h3>
+            <h3 class="text-2xl text-white">resturant latitude: {{$resturant->longitude}}</h3>
+            <h3 class="text-2xl text-white">resturant longitude: {{$resturant->latitude}}</h3>
             <h3 class="text-2xl text-white">resturant address: {{$resturant->address}}</h3>
+            <h3 class="text-2xl text-white">opens at: {{$resturant->open_time}}  and closed at: {{$resturant->closed_time}}</h3>
+            <h3 class="text-2xl text-white">delivery cost: {{$resturant->delivery_cost}}</h3>
+
             <h3 class="text-2xl text-white">resturant categories:</h3>
 
             @foreach($resturant->categories as $category)

@@ -6,24 +6,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Address extends Model
+class Schedule extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'adressses';
+
+    protected $table = 'schedule';
+
     protected $fillable = [
-        'user_id',
-        'title',
-        'address',
-        'latitude',
-        'longitude',
+        'day_of_week',
+        'open_time',
+        'close_time',
+        'resturant_id',
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'resturant_id',
+        'deleted_at',
 
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function resturant()
     {

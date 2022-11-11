@@ -76,8 +76,8 @@ class FoodsCategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = FoodsCatgory::find($id);
-        return view('admins.foods-category.edit')->with('category',$category);
+
+        return view('admins.foods-category.edit')->with('category',    FoodsCatgory::find($id));
     }
 
     /**

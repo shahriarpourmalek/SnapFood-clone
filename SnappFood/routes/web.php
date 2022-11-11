@@ -13,6 +13,7 @@ use App\Http\Controllers\managercontrollers\LoginManagerController;
 use App\Http\Controllers\managercontrollers\ManagerDashboardController;
 use App\Http\Controllers\managercontrollers\RegisterManagerController;
 use App\Http\Controllers\managercontrollers\ResturantController;
+use App\Http\Controllers\managercontrollers\ResturantSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -66,6 +67,12 @@ Route::prefix('managerdashboard')->group(function (){
 //manager routes
     Route::get('',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
     Route::get('/logout',[LoginManagerController::class,'destroy']);
+//resturant setting
+    Route::get('/resturant-setting',[ResturantSettingController::class,'index']);
+    Route::get('/resturant-setting/{id}/add-delivery-cost',[ResturantSettingController::class,'deliveryCostPage']);
+    Route::put('/rsturant-setting/add-delivery-cost/{resturant_id}',[ResturantSettingController::class,'addDeliveryCost']);
+    Route::get('/resturant-setting/working-time',[ResturantSettingController::class,'workTimePage']);
+    Route::post('/resturant-setting/working-time',[ResturantSettingController::class,'storeTime']);
 
 //managers resturant controller
     Route::resource('/resturant-info',ResturantController::class);

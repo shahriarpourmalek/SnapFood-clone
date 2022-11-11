@@ -26,8 +26,8 @@ class ResturantController extends Controller
      */
     public function index(Resturant $resturant)
     {
-        $data = Auth::guard('manager')->user()->resturant()->first();
-        return view('managers.resturants.index', ['resturant' => $data]);
+        ;
+        return view('managers.resturants.index', ['resturant' => Auth::guard('manager')->user()->resturant()->first()]);
 
     }
 
@@ -57,9 +57,9 @@ class ResturantController extends Controller
                 'number' => $request->phone,
                 'account_number' => $request->account_number,
                 'address' => $request->address,
-                'city' => $request->city,
-                'state' => $request->state,
-
+                'latitude' => $request->latitude,
+                'longitude' =>$request->longitude,
+                'delivery_cost' => $request->delivery_cost
             ]);
             $resturant->categories()->attach($request->category);
 
@@ -76,8 +76,11 @@ class ResturantController extends Controller
      */
     public function show(Resturant $resturant, $id)
     {
-        $data = Auth::guard('manager')->user()->resturant()->find($id);
-        return view('managers.resturants.show', ['resturant' => $data]);
+        return view('managers.resturants.show', ['resturant' => Auth::guard('manager')
+            ->user()
+            ->resturant()
+            ->find($id)
+        ]);
     }
 
     /**
@@ -89,9 +92,8 @@ class ResturantController extends Controller
     public function edit($id, Category $category)
     {
 
-        $data = Auth::guard('manager')->user()->resturant()->find($id);
         return view('managers.resturants.edit', [
-            'resturant' => $data,
+            'resturant' => Auth::guard('manager')->user()->resturant()->find($id),
             'categories' => $category::all()
         ]);
     }
@@ -113,9 +115,9 @@ class ResturantController extends Controller
             'number' => $request->phone,
             'account_number' => $request->account_number,
             'address' => $request->address,
-            'city' => $request->city,
-            'state' => $request->state,
-
+           'latitude' => $request->latitude,
+            'longitude' =>$request->longitude,
+            'delivery_cost' => $request->delivery_cost
         ]);
         $request->user()->resturant()->find($id)->categories()->attach($request->category);
         return redirect('/managerdashboard/resturant-info');

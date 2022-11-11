@@ -17,9 +17,11 @@ return new class extends Migration {
             $table->string('name');
             $table->string('number');
             $table->string('account_number');
-            $table->string('state');
-            $table->string('city');
+
+            $table->integer('delivery_cost')->nullable();
             $table->text('address');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->unsignedBigInteger('manager_id');
             $table->foreign('manager_id')
                 ->references('id')

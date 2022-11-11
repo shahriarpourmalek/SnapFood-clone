@@ -47,6 +47,8 @@
                 <label class="text-black text-2xl  ">Account Number</label>
                 <input name="account_number" type="text" class="h-[50px] bg-orange-100 rounded-lg">
             </div>
+
+
             <div class="flex flex-col ">
                 <label class="text-black text-2xl  ">Address</label>
                 <textarea name="address"  class="h-[150px] bg-orange-100 rounded-lg " placeholder="                    qazvin , shahid babayi street
@@ -54,12 +56,12 @@
                 </textarea>
             </div>
             <div class="flex flex-col ">
-                <label class="text-black text-2xl  ">state</label>
-                <input name="state" type="text" class=" h-[50px] bg-orange-100 rounded-lg w-" >
+                <label class="text-black text-2xl  ">latitude</label>
+                <input name="latitude" type="text" class=" h-[50px] bg-orange-100 rounded-lg w-" >
             </div>
             <div class="flex flex-col ">
-                <label class="text-black text-2xl  ">city</label>
-                <input name="city" type="text" class=" h-[50px] bg-orange-100 rounded-lg w-" >
+                <label class="text-black text-2xl  ">longitude</label>
+                <input name="longitude" type="text" class=" h-[50px] bg-orange-100 rounded-lg w-" >
             </div>
             <div class="flex flex-col ">
                 <label class="text-black text-2xl  ">insert</label>

@@ -81,9 +81,8 @@ class FoodManagingController extends Controller
      */
     public function edit(Foods $foods, $id)
     {
-        $food = $foods::find($id);
         return view('managers.food-managing.edit', [
-            'food' => $food,
+            'food' =>          $foods::find($id),
             'categories' => Category::all(),
         ]);
     }

@@ -12,13 +12,14 @@ class AddDiscountController extends Controller
     public function discount(Foods $foods, $id)
     {
 
-        $discounts = Discount::all();
         return view('managers.food-managing.add-discount', [
-            'discounts' => $discounts,
+            'discounts' => Discount::all(),
             'food' => $foods::find($id)
         ]);
     }
-    public function addDiscount(Request $request, $id){
+
+    public function addDiscount(Request $request, $id)
+    {
         Foods::find($id)->update([
             'discount_id' => $request->discount
         ]);

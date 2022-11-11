@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('adressses', function (Blueprint $table) {
+        Schema::create('schedule', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id')
+            $table->string('day_of_week');
+            $table->time('open_time')->nullable();
+            $table->time('close_time')->nullable();
+            $table->unsignedBigInteger('resturant_id');
+            $table->foreign('resturant_id')
                 ->references('id')
-                ->on('users')
-                ->cascadeOnDelete();
-            $table->string('title');
-            $table->text('address');
-            $table->string('latitude');
-            $table->string('longitude');
+                ->on('resturants')->cascadeOnDelete();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adressses');
+        Schema::dropIfExists('schedule');
     }
 };

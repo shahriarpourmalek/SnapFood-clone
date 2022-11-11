@@ -96,7 +96,6 @@ class DiscountController extends Controller
      */
     public function destroy($id)
     {
-        $discount = Discount::all()->find($id)->firstOrFail();
-        $discount->delete();
+        Discount::all()->find($id)->firstOrFail()->delete();
         return redirect('/admindashboard/discount-manager');    }
 }
