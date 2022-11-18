@@ -26,9 +26,9 @@
                 <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
                    href="/managerdashboard/resturant-info/{{$resturant->id}}">
                     show </a>
-                <a class="ml-12 bg-yellow-400 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
+                <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
                    href="/managerdashboard/resturant-info/{{$resturant->id}}/edit">
-                change setting    edit </a>
+                change  </a>
             </div>
         </div>
     @endif
@@ -38,6 +38,9 @@
     </a>
         <a href="/managerdashboard/resturant-setting/working-time">
             <div class="mt-16 rounded-lg  w-[300px] h-[70px] bg-indigo-500 text-white text-center flex flex-col justify-center">set worktime</div>
+        </a>
+        <a href="/managerdashboard/resturant-setting/{{$resturant->id}}/working-time">
+            <div class="mt-16 rounded-lg  w-[300px] h-[70px] bg-indigo-500 text-white text-center flex flex-col justify-center">edit worktime</div>
         </a>
     </div>
 @endsection

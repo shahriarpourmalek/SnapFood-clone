@@ -27,4 +27,8 @@ public function resturant(){
     {
         return $this->hasOne(Discount::class);
     }
+    public function foodCategory(){
+    return $this->belongsTo(FoodsCatgory::class,
+    'foods_category_id');
+    }
 }

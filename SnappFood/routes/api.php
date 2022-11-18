@@ -33,6 +33,7 @@ Route::prefix('addresses')->group(function (){
 Route::prefix('resturants')->group(function (){
     Route::get('{resturant_id}',[UserResturantsConroller::class,'getAddress']);
     Route::get('',[UserResturantsConroller::class,'getAllAdrresses']);
+    Route::get('{resturant_id}/foods',[UserResturantsConroller::class,'getAllFoods']);
 
 });
         Route::patch('/update/{id}',[AuthUserController::class,'update']);

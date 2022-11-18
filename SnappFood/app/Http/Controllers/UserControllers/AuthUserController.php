@@ -64,12 +64,7 @@ class AuthUserController extends Controller
 
     public function update(AuthUserRequestUpdate $request, $id)
     {
-        $fields = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'password' => 'required|string',
-            'phone' => 'required  '  ,
-        ]);
+        $fields = $request->validated();
 
         $user = Auth::user()->update([
             'name' => $fields['name'],
@@ -77,12 +72,11 @@ class AuthUserController extends Controller
             'password' => bcrypt($fields['password']),
             'phone' => $fields['phone']
         ]);
-return $request->validated();
-//
-//        $response = [
-//            'user' => $user,
-//        ];
-//        return response($response, 201);
+
+        $response = [
+            'user' => $user,
+        ];
+        return response($response, 201);
 
     }
 }

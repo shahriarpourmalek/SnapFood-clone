@@ -2,6 +2,7 @@
 
 
 @section('content')
+    <h2 class="text-4xl flex justify-center font-bold mb-6 text-gray-900">Set work Time</h2>
 
     <div class="mx-auto mt-24 w-[70%]">
         @foreach($days as $day)
@@ -13,7 +14,7 @@
 
             <div class="flex flex-col gap-2">
                 <div class="flex flex-row gap-10">
-                <input name="open_time" type="time" class="h-[50px] bg-orange-100 rounded-lg">
+                <input name="open_time" type="time" class="h-[50px] bg-orange-100 rounded-lg" >
                 <input name="close_time" type="time" class="h-[50px] bg-orange-100 rounded-lg">
                 </div>
             </div>

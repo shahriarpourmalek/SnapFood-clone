@@ -11,7 +11,7 @@ class Discount extends Model
     use HasFactory,SoftDeletes;
     protected $table = 'discounts';
     protected $fillable = ['title','expire_time','amount'];
-
+    protected $visible = ['title','amount','id'];
     public function foods()
     {
      return   $this->belongsTo(Foods::class);

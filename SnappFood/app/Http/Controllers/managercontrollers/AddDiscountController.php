@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class AddDiscountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:manager');
+    }
+
     public function discount(Foods $foods, $id)
     {
 

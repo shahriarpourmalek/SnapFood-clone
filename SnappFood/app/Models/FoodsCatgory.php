@@ -18,6 +18,6 @@ class FoodsCatgory extends Model
 
     public function foods()
     {
-        return $this->belongsTo(Foods::class);
+        return $this->hasOne(Foods::class);
     }
 }

@@ -1,19 +1,5 @@
 <?php
-
-
-use App\Http\Controllers\admincontrollers\AdminLoginController;
-use App\Http\Controllers\admincontrollers\AdminPageController;
-use App\Http\Controllers\admincontrollers\DiscountController;
-use App\Http\Controllers\admincontrollers\FoodsCategoryController;
-use App\Http\Controllers\admincontrollers\ResturantsCategoryController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LoginUserController;
-use App\Http\Controllers\managercontrollers\FoodManagingController;
-use App\Http\Controllers\managercontrollers\LoginManagerController;
-use App\Http\Controllers\managercontrollers\ManagerDashboardController;
-use App\Http\Controllers\managercontrollers\RegisterManagerController;
-use App\Http\Controllers\managercontrollers\ResturantController;
-use App\Http\Controllers\managercontrollers\ResturantSettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,58 +18,10 @@ Route::get('/', function () {
 Route::get('/login',[LoginController::class,'index'])->name('login');
 
 
-//admin routes
-Route::prefix('admins-login')->group(function (){
-    Route::get('',[AdminLoginController::class,'create'])->name('admins-login');
-    Route::post('',[AdminLoginController::class,'authenticate'])->name('admins-login');
-});
-Route::prefix('admindashboard')->group(function (){
-    Route::get('',[AdminPageController::class,'index']);
-    Route::get('/logout',[AdminLoginController::class,'destroy']);
-//Resturant Category Controller
-    Route::resource('/resturant-category',ResturantsCategoryController::class);
-//foods Category controller
-    Route::resource('/foods-category',FoodsCategoryController::class);
-//discount controller
-    Route::resource('/discount-manager',DiscountController::class);
-});
-
-//sign up routes
-Route::prefix('managers-register')->group(function (){
-    Route::get('', [RegisterManagerController::class , 'create']);
-    Route::post('', [RegisterManagerController::class , 'store'])->name('managers-register');
-});
+require 'admins.php';
 
 
-//manager login routes
-Route::prefix('managers-login')->group(function (){
-    Route::get('',[LoginManagerController::class,'create'])->name('managers-login');
-    Route::post('',[LoginManagerController::class,'authenticate'])->name('managers-login');
-});
-
-Route::prefix('managerdashboard')->group(function (){
-//    Route::resource('/resturant-options',ResturantController::class);
-
-//manager routes
-    Route::get('',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
-    Route::get('/logout',[LoginManagerController::class,'destroy']);
-//resturant setting
-    Route::get('/resturant-setting',[ResturantSettingController::class,'index']);
-    Route::get('/resturant-setting/{id}/add-delivery-cost',[ResturantSettingController::class,'deliveryCostPage']);
-    Route::put('/rsturant-setting/add-delivery-cost/{resturant_id}',[ResturantSettingController::class,'addDeliveryCost']);
-    Route::get('/resturant-setting/working-time',[ResturantSettingController::class,'workTimePage']);
-    Route::post('/resturant-setting/working-time',[ResturantSettingController::class,'storeTime']);
-
-//managers resturant controller
-    Route::resource('/resturant-info',ResturantController::class);
-    //managers foods managing controller
-    Route::resource('/food-managing',FoodManagingController::class);
-    Route::get('/food-managing/{id}/add-discount',[\App\Http\Controllers\managercontrollers\AddDiscountController::class,'discount']);
-    Route::put('/food-managing/add-discount/{id}',[\App\Http\Controllers\managercontrollers\AddDiscountController::class,'addDiscount']);
-});
-
-
-
+require 'managers.php';
 
 
 //Route::get('/users-login',[LoginUserController::class,'index']);
