@@ -53,6 +53,11 @@ class User extends Authenticatable
 
     public function getCurrentAddress($address_id)
     {
-        $this->where("current_address",$address_id)->first();
+        $this->where("current_address", $address_id)->first();
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
     }
 }

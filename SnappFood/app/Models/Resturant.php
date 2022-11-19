@@ -45,4 +45,7 @@ protected $hidden = [
     {
         return $this->hasMany(Schedule::class);
     }
+    public function order(){
+        return $this->hasMany(Order::class);
+    }
 }

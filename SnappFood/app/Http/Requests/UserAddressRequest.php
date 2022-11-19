@@ -26,8 +26,8 @@ class UserAddressRequest extends FormRequest
         return [
             'title' => 'required',
             'address' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
         ];
     }
 }
