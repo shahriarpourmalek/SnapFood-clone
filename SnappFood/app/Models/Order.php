@@ -11,9 +11,10 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'user_id',
-        'status_id',
         'resturant_id',
         'is_paid',
+        'total_price',
+        'order_status',
         'note',
     ];
 
@@ -24,5 +25,8 @@ class Order extends Model
     public function resturant()
     {
         return $this->belongsTo(Resturant::class);
+    }
+    public function foods(){
+    return    $this->belongsToMany(Food::class)->withPivot('count');
     }
 }

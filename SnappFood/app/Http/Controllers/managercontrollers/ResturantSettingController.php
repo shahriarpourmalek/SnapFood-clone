@@ -78,7 +78,7 @@ class ResturantSettingController extends Controller
             'day_of_week' => $request->day_of_week,
             'open_time' => $request->open_time,
             'close_time' => $request->close_time,
-            'resturant_id' => Auth::guard('manager')->user()->resturant()->get()->first()->id
+            'resturant_id' => auth()->guard('manager')->id()
         ]);
         return redirect('/managerdashboard/resturant-setting/working-time');
     }

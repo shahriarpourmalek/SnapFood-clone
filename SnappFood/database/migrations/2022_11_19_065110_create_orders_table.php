@@ -19,18 +19,15 @@ return new class extends Migration {
                 ->references('id')
                 ->on('users')
                 ->cascadeOnDelete();
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')
-                ->references('id')
-                ->on('order_status')
-                ->cascadeOnDelete();
+            $table->enum('order_status', ['pending', 'preparing', 'delivaring', 'taken_over'])->default('pending');
             $table->unsignedBigInteger('resturant_id');
             $table->foreign('resturant_id')
                 ->references('id')
                 ->on('resturants')
                 ->cascadeOnDelete();
-            $table->boolean('is_paid');
-            $table->text('note');
+            $table->boolean('is_paid')->default(false);
+            $table->integer('total_price');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

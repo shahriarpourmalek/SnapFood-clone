@@ -18,6 +18,6 @@ class FoodsCatgory extends Model
 
     public function foods()
     {
-        return $this->hasMany(Foods::class);
+        return $this->hasMany(Food::class);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Foods extends Model
+class Food extends Model
 {
     use HasFactory,SoftDeletes;
 
@@ -30,5 +30,8 @@ public function resturant(){
     public function foodCategory(){
     return $this->belongsTo(FoodsCatgory::class,
     'foods_category_id');
+    }
+    public function orders(){
+        return $this->belongsToMany(Order::class)->withPivot('count');
     }
 }

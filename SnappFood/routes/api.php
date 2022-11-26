@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserControllers\AddressController;
 use App\Http\Controllers\UserControllers\AuthUserController;
+use App\Http\Controllers\UserControllers\OrderController;
 use App\Http\Controllers\UserControllers\UserResturantsConroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,23 +24,31 @@ Route::prefix('user')->group(function () {
 });
 
 
-    //protected routes
-    Route::group(['middleware' => ['auth:sanctum']], function () {
-Route::prefix('addresses')->group(function (){
-    Route::get('', [AddressController::class, 'getAddress']);
-    Route::post('', [AddressController::class, 'addAddress']);
-    Route::post('/{id}', [AddressController::class, 'setCurrentaddress']);
-});
-Route::prefix('resturants')->group(function (){
-    Route::get('{resturant_id}',[UserResturantsConroller::class,'getAddress']);
-    Route::get('',[UserResturantsConroller::class,'getAllAdrresses']);
-    Route::get('{resturant_id}/foods',[UserResturantsConroller::class,'getAllFoods']);
-
-});
-        Route::patch('/update/{id}',[AuthUserController::class,'update']);
-
-        Route::post('/logout', [AuthUserController::class, 'logout']);
+//protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::prefix('addresses')->group(function () {
+        Route::get('', [AddressController::class, 'getAddress']);
+        Route::post('', [AddressController::class, 'addAddress']);
+        Route::post('/{id}', [AddressController::class, 'setCurrentaddress']);
     });
+    Route::prefix('resturants')->group(function () {
+        Route::get('{resturant_id}', [UserResturantsConroller::class, 'getAddress']);
+        Route::get('', [UserResturantsConroller::class, 'getAllAdrresses']);
+        Route::get('{resturant_id}/foods', [UserResturantsConroller::class, 'getAllFoods']);
+
+    });
+    Route::prefix('carts')->group(function () {
+        Route::post('add', [OrderController::class, 'addToCart']);
+        Route::get('', [OrderController::class, 'getCarts']);
+        Route::get('{cart_id}', [OrderController::class, 'getCartInfo']);
+        Route::put('{cart_id}/pay', [OrderController::class, 'payCard'])->whereNumber('cart_id');
+        Route::put('/update', [OrderController::class, 'update']);
+Route::delete('/delete',[OrderController::class,'delete']);
+    });
+    Route::patch('/update/{id}', [AuthUserController::class, 'update']);
+
+    Route::post('/logout', [AuthUserController::class, 'logout']);
+});
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

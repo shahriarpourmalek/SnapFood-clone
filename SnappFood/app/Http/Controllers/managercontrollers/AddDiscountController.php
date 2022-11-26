@@ -4,7 +4,7 @@ namespace App\Http\Controllers\managercontrollers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
-use App\Models\Foods;
+use App\Models\Food;
 use Illuminate\Http\Request;
 
 class AddDiscountController extends Controller
@@ -14,7 +14,7 @@ class AddDiscountController extends Controller
         $this->middleware('auth:manager');
     }
 
-    public function discount(Foods $foods, $id)
+    public function discount(Food $foods, $id)
     {
 
         return view('managers.food-managing.add-discount', [
@@ -25,7 +25,7 @@ class AddDiscountController extends Controller
 
     public function addDiscount(Request $request, $id)
     {
-        Foods::find($id)->update([
+        Food::find($id)->update([
             'discount_id' => $request->discount
         ]);
         return redirect('/managerdashboard/food-managing');

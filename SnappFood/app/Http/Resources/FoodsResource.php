@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Discount;
-use App\Models\Foods;
+use App\Models\Food;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FoodsResource extends JsonResource
@@ -22,7 +22,7 @@ class FoodsResource extends JsonResource
             return [
               'id' =>$category->id,
               'title' => $category->name,
-                'foods' => Foods::where('foods_category_id',$category->id)->get()->map(function ($food){
+                'foods' => Food::where('foods_category_id',$category->id)->get()->map(function ($food){
                        $discount = Discount::find($food->discount_id);
 
                     return [

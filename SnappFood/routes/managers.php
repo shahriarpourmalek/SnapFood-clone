@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\managercontrollers\AddDiscountController;
 use App\Http\Controllers\managercontrollers\FoodManagingController;
 use App\Http\Controllers\managercontrollers\LoginManagerController;
 use App\Http\Controllers\managercontrollers\ManagerDashboardController;
+use App\Http\Controllers\managercontrollers\OrderManagerConroller;
 use App\Http\Controllers\managercontrollers\RegisterManagerController;
 use App\Http\Controllers\managercontrollers\ResturantController;
 use App\Http\Controllers\managercontrollers\ResturantSettingController;
@@ -21,7 +23,6 @@ Route::prefix('managers-login')->group(function (){
 });
 
 Route::prefix('managerdashboard')->group(function (){
-//    Route::resource('/resturant-options',ResturantController::class);
 
 //manager routes
     Route::get('',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
@@ -41,8 +42,14 @@ Route::prefix('managerdashboard')->group(function (){
     Route::resource('/resturant-info',ResturantController::class);
     //managers foods managing controller
     Route::resource('/food-managing',FoodManagingController::class);
-    Route::get('/food-managing/{id}/add-discount',[\App\Http\Controllers\managercontrollers\AddDiscountController::class,'discount']);
-    Route::put('/food-managing/add-discount/{id}',[\App\Http\Controllers\managercontrollers\AddDiscountController::class,'addDiscount']);
+    Route::get('/food-managing/{id}/add-discount',[AddDiscountController::class,'discount']);
+    Route::put('/food-managing/add-discount/{id}',[AddDiscountController::class,'addDiscount']);
+
+    //order management controllers
+    Route::get('/manage-orders',[OrderManagerConroller::class,'index']);
+    Route::get('/manage-orders/{order_id}',[OrderManagerConroller::class,'showOrder']);
+    Route::put('/manage-orders/{order_id}',[OrderManagerConroller::class,'update']);
+
 });
 
 

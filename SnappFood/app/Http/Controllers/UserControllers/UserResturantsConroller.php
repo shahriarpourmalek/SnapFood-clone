@@ -9,7 +9,7 @@ use App\Http\Resources\ResturantInfoResource;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Category;
 use App\Models\Discount;
-use App\Models\Foods;
+use App\Models\Food;
 use App\Models\FoodsCatgory;
 use App\Models\Resturant;
 use App\Models\Schedule;

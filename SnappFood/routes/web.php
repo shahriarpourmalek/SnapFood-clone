@@ -24,5 +24,4 @@ require 'admins.php';
 require 'managers.php';
 
 
-//Route::get('/users-login',[LoginUserController::class,'index']);
 

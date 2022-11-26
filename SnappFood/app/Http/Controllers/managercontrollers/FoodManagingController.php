@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddFoodRequest;
 use App\Models\Category;
 use App\Models\Discount;
-use App\Models\Foods;
+use App\Models\Food;
 use App\Models\FoodsCatgory;
 use Illuminate\Http\Request;
 
@@ -21,13 +21,12 @@ class FoodManagingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Foods $foods)
+    public function index(Food $foods)
     {
-
         return view('managers.food-managing.index', [
             'foods' => $foods::all(),
             'discount' => Discount::all()
-            ]);
+        ]);
     }
 
     /**
@@ -35,8 +34,9 @@ class FoodManagingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(FoodsCatgory $foodsCatgory)
+    public function create()
     {
+         $foodsCatgory = FoodsCatgory::class;
         return view('managers.food-managing.create', ['categories' => $foodsCatgory::all()]);
 
     }
@@ -53,7 +53,7 @@ class FoodManagingController extends Controller
 
         $newImageName = time() . '-' . $request->name . '.' . $request->file('image')->guessExtension();
 
-        Foods::create([
+        Food::create([
             'name' => $request->name,
             'raw_material' => $request->raw_material,
             'price' => $request->price,
@@ -72,18 +72,8 @@ class FoodManagingController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Foods $foods, $id)
+    public function edit(Food $foods, $id)
     {
         return view('managers.food-managing.edit', [
             'food' =>          $foods::find($id),
@@ -102,7 +92,7 @@ class FoodManagingController extends Controller
     {
         $newImageName = time() . '-' . $request->name . '.' . $request->file('image')->guessExtension();
 
-        Foods::find($id)->update([
+        Food::find($id)->update([
             'name' => $request->name,
             'raw_material' => $request->raw_material,
             'price' => $request->price,
@@ -122,10 +112,9 @@ class FoodManagingController extends Controller
      */
     public function destroy($id)
     {
-        Foods::destroy($id);
+        Food::destroy($id);
         return redirect('/managerdashboard/food-managing');
     }
-
 
 
 }

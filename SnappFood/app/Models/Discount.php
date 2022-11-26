@@ -14,6 +14,6 @@ class Discount extends Model
     protected $visible = ['title','amount','id'];
     public function foods()
     {
-     return   $this->belongsTo(Foods::class);
+     return   $this->belongsTo(Food::class);
 }
 }

@@ -28,7 +28,7 @@ protected $hidden = [
 ];
     public function foods()
     {
-        return $this->hasMany(Foods::class);
+        return $this->hasMany(Food::class);
     }
 
     public function manager()
