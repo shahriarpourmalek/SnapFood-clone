@@ -63,7 +63,7 @@ class OrderManagerConroller extends Controller
 $order->update([
     'order_status' => $request->status
 ]);
-
+SendEmailJob::dispatch($order);
 
 return redirect( '/managerdashboard/manage-orders');
     }
