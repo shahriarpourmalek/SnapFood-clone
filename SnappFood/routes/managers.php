@@ -3,6 +3,7 @@
 use App\Http\Controllers\managercontrollers\AddDiscountController;
 use App\Http\Controllers\managercontrollers\FoodManagingController;
 use App\Http\Controllers\managercontrollers\LoginManagerController;
+use App\Http\Controllers\managercontrollers\ManagerCommentController;
 use App\Http\Controllers\managercontrollers\ManagerDashboardController;
 use App\Http\Controllers\managercontrollers\OrderManagerConroller;
 use App\Http\Controllers\managercontrollers\RegisterManagerController;
@@ -49,6 +50,14 @@ Route::prefix('managerdashboard')->group(function (){
     Route::get('/manage-orders',[OrderManagerConroller::class,'index']);
     Route::get('/manage-orders/{order_id}',[OrderManagerConroller::class,'showOrder']);
     Route::put('/manage-orders/{order_id}',[OrderManagerConroller::class,'update']);
+
+
+    //order comments
+    Route::get('/comment-manager',[ManagerCommentController::class,'index']);
+Route::put('/comment-manager',[ManagerCommentController::class,'answer']);
+
+    //order archive
+    Route::get('/archive-of-orders',[OrderManagerConroller::class,'archives']);
 
 });
 

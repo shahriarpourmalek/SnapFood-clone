@@ -1,18 +1,29 @@
 @extends('layouts.managers-layout.main')
-
-
 @section('content')
 
     <div class="flex flex-row gap-10 w-full justify-center ">
         <div class="flex flex-col justify-center bg-orange-300 w-[250px] h-32 text-white rounded-lg ">
             <div class=" text-white text-2xl mx-auto">
                 Total income:
+
+
+            </div>
+            <div class=" text-white text-2xl mx-auto">
+
+            @foreach($orders  as $order)
+                {{$total_income += $order->total_price}}
+            @endforeach
             </div>
         </div>
         <div class="flex flex-col justify-center bg-lime-300 w-[250px] h-32 text-white  rounded-lg">
             <div class=" text-white text-2xl mx-auto">
                 Total order count:
-                <p>1000</p>
+                @foreach($orders  as $order)
+
+                @if($order->order_status != 'taken_over')
+                {{$orders->count()}}
+                @endif
+                @endforeach
             </div>
         </div>
         <div class="flex flex-col justify-center bg-blue-300 w-[250px] h-32 text-white  rounded-lg">
@@ -40,6 +51,7 @@
     </form>
     <div class="mt-16">
         @foreach($orders  as $order)
+            @if($order->order_status != 'taken_over')
             <div class="my-4 py-5 bg-orange-300 flex flex-row rounded-lg ">
                 <div class="flex flex-col mx-2">
                     order detatils:
@@ -71,6 +83,7 @@
                     </div>
                 </a>
             </div>
+            @endif
         @endforeach
     </div>
 

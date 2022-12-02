@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserControllers\CommentController;
 use App\Http\Controllers\UserControllers\AddressController;
 use App\Http\Controllers\UserControllers\AuthUserController;
 use App\Http\Controllers\UserControllers\OrderController;
@@ -45,8 +46,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::put('/update', [OrderController::class, 'update']);
 Route::delete('/delete',[OrderController::class,'delete']);
     });
-    Route::patch('/update/{id}', [AuthUserController::class, 'update']);
 
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::get('/comments', [CommentController::class, 'index']);
+
+
+
+    Route::patch('/update/{id}', [AuthUserController::class, 'update']);
     Route::post('/logout', [AuthUserController::class, 'logout']);
 });
 

@@ -41,12 +41,23 @@
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="/managerdashboard/archive-of-orders" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
-                    <span>Adding Banner</span>
+                    <span>Archive Of Orders</span>
                 </a>
             </li>
+            <li>
+                <a href="/managerdashboard/reports" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
+                    <span>Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="/managerdashboard/comment-manager" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+
+                    <span>Comment  Manager</span>
+                </a>
+            </li>
             <li>
                 <a href="/managerdashboard/logout" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 

@@ -10,13 +10,14 @@ use App\Models\Restaurant;
 use App\Models\Resturant;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class OrderManagerConroller extends Controller
 {
     public function index(Request $request)
     {
-       $orders = Order::where('resturant_id', Resturant::where('manager_id',auth()->guard('manager')->id())->first()->id)->orderBy('created_at')->get();
+        $orders = Order::where('resturant_id', Resturant::where('manager_id', auth()->guard('manager')->id())->first()->id)->orderBy('created_at')->get();
         $index = 0;
 
         if ($request->filter == 'lastWeek') {
@@ -24,14 +25,12 @@ class OrderManagerConroller extends Controller
                 if (Carbon::now()->diff($order->created_at)->days > 7) unset($orders[$index]);
                 $index++;
             }
-        }
-        elseif ($request->filter == 'lastMonth'){
+        } elseif ($request->filter == 'lastMonth') {
             foreach ($orders as $order) {
                 if (Carbon::now()->diff($order->created_at)->days > 30) unset($orders[$index]);
                 $index++;
             }
-        }
-        elseif ($request->filter == 'lastYear'){
+        } elseif ($request->filter == 'lastYear') {
             foreach ($orders as $order) {
                 if (Carbon::now()->diff($order->created_at)->days > 365) unset($orders[$index]);
                 $index++;
@@ -41,31 +40,64 @@ class OrderManagerConroller extends Controller
 
         return view('managers.order_management.index',
             [
+                'total_income' => 0,
                 'user' => User::all(),
-                'orders' =>$orders ,
+                'orders' => $orders,
                 'address' => Address::all(),
             ]);
     }
+
     public function showOrder($order_id)
     {
         $order = Order::find($order_id);
-        return view('managers.order_management.show_order' ,[
-            'order'=> $order,
+        return view('managers.order_management.show_order', [
+            'order' => $order,
             'address' => Address::all(),
             'user' => User::all(),
 
         ]);
     }
-    public function update(Request $request,$order_id)
+
+    public function update(Request $request, $order_id)
     {
         $order = Order::find($order_id);
 
-$order->update([
-    'order_status' => $request->status
-]);
-SendEmailJob::dispatch($order);
+        $order->update([
+            'order_status' => $request->status
+        ]);
+        SendEmailJob::dispatch($order);
 
-return redirect( '/managerdashboard/manage-orders');
+        return redirect('/managerdashboard/manage-orders');
     }
 
+    public function archives(Request $request)
+    {
+        $orders = Order::where('resturant_id', Resturant::where('manager_id', auth()->guard('manager')->id())->first()->id)->orderBy('created_at')->get();
+        $index = 0;
+
+        if ($request->filter == 'lastWeek') {
+            foreach ($orders as $order) {
+                if (Carbon::now()->diff($order->created_at)->days > 7) unset($orders[$index]);
+                $index++;
+            }
+        } elseif ($request->filter == 'lastMonth') {
+            foreach ($orders as $order) {
+                if (Carbon::now()->diff($order->created_at)->days > 30) unset($orders[$index]);
+                $index++;
+            }
+        } elseif ($request->filter == 'lastYear') {
+            foreach ($orders as $order) {
+                if (Carbon::now()->diff($order->created_at)->days > 365) unset($orders[$index]);
+                $index++;
+            }
+        }
+
+
+        return view('managers.order_management.archives',
+            [
+                'user' => User::all(),
+                'orders' => $orders,
+                'address' => Address::all(),
+            ]);
+    }
 }

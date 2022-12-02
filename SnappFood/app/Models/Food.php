@@ -34,4 +34,7 @@ public function resturant(){
     public function orders(){
         return $this->belongsToMany(Order::class)->withPivot('count');
     }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

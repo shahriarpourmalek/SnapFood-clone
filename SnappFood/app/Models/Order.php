@@ -29,4 +29,7 @@ class Order extends Model
     public function foods(){
     return    $this->belongsToMany(Food::class)->withPivot('count');
     }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }
