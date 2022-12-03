@@ -12,36 +12,29 @@ use App\Models\Restaurant;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::where('restaurant_id', Restaurant::where('user_id', auth()->guard('manager')->id())->first()->id)->orderBy('created_at')->get();
         $totalIncome = 0;
         $totalSales = 0;
 
+        $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id)->get();
+
         if ($request->filter == 'lastWeek') {
-            foreach ($orders as $order) {
-                if (Carbon::now()->diff($order->created_at)->days < 7) {
-                    $totalIncome += $order->total_price;
-                    $totalSales += 1;
-                }
-            }
+            $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
+                ->where('created_at', '>', Carbon::now()->subDays(7))
+                ->get();
         } elseif ($request->filter == 'lastMonth') {
-            foreach ($orders as $order) {
-                if (Carbon::now()->diff($order->created_at)->days < 30) {
-                    $totalIncome += $order->total_price;
-                    $totalSales += 1;
-                }
-            }
-        } else {
-            foreach ($orders as $order) {
-                $totalIncome += $order->total_price;
-                $totalSales += 1;
-            }
+            $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
+                ->where('created_at', '>', Carbon::now()->subDays(30))
+                ->get();
+        } elseif ($request->filter == 'lastYear') {
+            $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
+                ->where('created_at', '>', Carbon::now()->subDays(360))
+                ->get();
         }
 
         return view('managers.order_management.report',
