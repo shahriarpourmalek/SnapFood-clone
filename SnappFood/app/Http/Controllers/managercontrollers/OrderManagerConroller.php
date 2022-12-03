@@ -17,20 +17,20 @@ class OrderManagerConroller extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id)->get();
+        $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id)->simplePaginate(15);
 
         if ($request->filter == 'lastWeek') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(7))
-                ->get();
+                ->simplePaginate(15);
         } elseif ($request->filter == 'lastMonth') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(30))
-                ->get();
+                ->simplePaginate(15);
         } elseif ($request->filter == 'lastYear') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(360))
-                ->get();
+                ->simplePaginate(15);
         }
 
         return view('managers.order_management.index',
@@ -67,20 +67,20 @@ class OrderManagerConroller extends Controller
 
     public function archives(Request $request)
     {
-        $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id)->get();
+        $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id)->simplePaginate(15);
 
         if ($request->filter == 'lastWeek') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(7))
-                ->get();
+                ->simplePaginate(15);
         } elseif ($request->filter == 'lastMonth') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(30))
-                ->get();
+                ->simplePaginate(15);
         } elseif ($request->filter == 'lastYear') {
             $orders = Order::where('resturant_id', auth()->guard('manager')->user()->resturant()->first()->id,)
                 ->where('created_at', '>', Carbon::now()->subDays(360))
-                ->get();
+                ->simplePaginate(15);
         }
         return view('managers.order_management.archives',
             [

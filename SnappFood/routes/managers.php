@@ -7,6 +7,7 @@ use App\Http\Controllers\managercontrollers\ManagerCommentController;
 use App\Http\Controllers\managercontrollers\ManagerDashboardController;
 use App\Http\Controllers\managercontrollers\OrderManagerConroller;
 use App\Http\Controllers\managercontrollers\RegisterManagerController;
+use App\Http\Controllers\managercontrollers\ReportController;
 use App\Http\Controllers\managercontrollers\ResturantController;
 use App\Http\Controllers\managercontrollers\ResturantSettingController;
 use Illuminate\Support\Facades\Route;
@@ -51,10 +52,14 @@ Route::prefix('managerdashboard')->group(function (){
     Route::get('/manage-orders/{order_id}',[OrderManagerConroller::class,'showOrder']);
     Route::put('/manage-orders/{order_id}',[OrderManagerConroller::class,'update']);
 
+    //Order reports
+    Route::get('/reports',[ReportController::class,'index']);
 
     //order comments
     Route::get('/comment-manager',[ManagerCommentController::class,'index']);
 Route::put('/comment-manager',[ManagerCommentController::class,'answer']);
+    Route::put('/comment-manager',[ManagerCommentController::class,'accept']);
+    Route::put('/comment-manager',[ManagerCommentController::class,'deleteRequest']);
 
     //order archive
     Route::get('/archive-of-orders',[OrderManagerConroller::class,'archives']);

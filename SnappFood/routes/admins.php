@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\admincontrollers\AdminCommentController;
 use App\Http\Controllers\admincontrollers\AdminLoginController;
 use App\Http\Controllers\admincontrollers\AdminPageController;
 use App\Http\Controllers\admincontrollers\DiscountController;
@@ -21,5 +23,10 @@ Route::prefix('admindashboard')->group(function (){
     Route::resource('/foods-category',FoodsCategoryController::class);
 //discount controller
     Route::resource('/discount-manager',DiscountController::class);
+
+    //comments manager
+    Route::get('/comments-manager',[AdminCommentController::class,'index']);
+    Route::delete('/comments-manager',[AdminCommentController::class,'delete']);
+
 });
 

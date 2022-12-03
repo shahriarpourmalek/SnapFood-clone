@@ -14,7 +14,7 @@ class ManagerCommentController extends Controller
     {
 
         $comments = [];
-        $orders = Order::where('resturant_id', Resturant::where('manager_id', auth()->guard('manager')->id())->first()->id)->get();
+        $orders = Order::where('resturant_id', Resturant::where('manager_id', auth()->guard('manager')->id())->first()->id)->simplePaginate(15);
         foreach ($orders as $order) {
             foreach ($order->comments as $comment) {
                 if (!is_null($request->food)){
@@ -34,6 +34,22 @@ class ManagerCommentController extends Controller
         $comment = Comment::find($request->id);
         $comment->answer = $request->answer;
         $comment->save();
+
+        return redirect('managerdashboard/comment-manager');
+    }
+    public function accept(Request $request)
+    {
+        $comment = Comment::find($request->id)->update([
+            'comment_status' => 'Accepted'
+        ]);
+
+        return redirect('managerdashboard/comment-manager');
+    }
+    public function deleteRequest(Request $request)
+    {
+        $comment = Comment::find($request->id)->update([
+            'comment_status' => 'ShouldDelete'
+        ]);
 
         return redirect('managerdashboard/comment-manager');
     }

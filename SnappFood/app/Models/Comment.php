@@ -8,10 +8,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use HasFactory , SoftDeletes;
-    protected $fillable = ['user_id', 'food_id', 'order_id', 'message', 'score'];
+    use HasFactory, SoftDeletes;
 
-    public function user(){
+    protected $fillable = ['user_id', 'food_id', 'order_id', 'message', 'score','comment_status'];
+    public const COMMENT_STATUS = [
+        0 => 'Unaccepted',
+        1 => 'Accepted',
+        2 => 'ShouldDelete'
+    ];
+    public const COMMENT_SCORE = [
+        0, 1, 2, 3, 4, 5
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

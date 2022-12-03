@@ -1,4 +1,4 @@
-@extends('layouts.managers-layout.main')
+@extends('layouts.admin-layout.main')
 
 
 @section('content')
@@ -19,40 +19,20 @@
                 <p>comment status: {{$comment->comment_status}}</p>
                 <p>comment maasage : {{ $comment->message }}</p>
                 <p>comment score: {{ $comment->score }}</p>
-<p>comment answer : {{$comment->answer}}</p>
+                <p>comment answer : {{$comment->answer}}</p>
             </div>
 
         </div>
         <div class=" rounded-lg ">
             <div class="flex flex-col">
-
-                <form class="" action="" method="post">
-                    @csrf
-                    @method('put')
-                    <input type="hidden" name="id" value="{{ $comment->id }}">
-                    <input class="w-full bg-lime-200 h-12 rounded-lg" type="text" placeholder="Answer" name="answer">
-                    <div class="mt-1 text-center">
-                        <input class="bg-blue-200 mt-5 h-12 w-40 rounded-lg text-yellow-500 text-2xl font-bold" type="submit" value="Reply">
-                    </div>
-                </form>
                 <div class="flex flex-row justify-center gap-4">
-                <form action="" method="post">
-                    @csrf
-                    @method('put')
-
-                    <div class="mt-1 text-center">
-                        <button class="bg-yellow-200 mt-5 h-12 w-40 rounded-lg text-yellow-500 text-2xl font-bold" type="submit" name="id" value="{{$comment->id}}">
-                            Accept
-                        </button>
-                    </div>
-                </form>
                     <form action="" method="post">
                         @csrf
-                        @method('put')
+                        @method('DELETE')
 
                         <div class="mt-1 text-center">
                             <button class="bg-red-200 mt-5 h-12 w-40 rounded-lg text-blue-500 text-xl font-bold" type="submit" name="id" value="{{$comment->id}}">
-                                Delete Request
+                                Delete
                             </button>
                         </div>
                     </form>

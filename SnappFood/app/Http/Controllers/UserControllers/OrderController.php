@@ -117,8 +117,8 @@ else
         $order = Order::where([
             'resturant_id' => Food::find($request->food_id)->resturant->id,
             'user_id' => auth()->user()->id
-        ])->first();
-        $order->foods()->detach($request->food_id);
+        ]);
+        $order->delete();
         return response(['Massage' => 'this order  is deleted']);
     }
 

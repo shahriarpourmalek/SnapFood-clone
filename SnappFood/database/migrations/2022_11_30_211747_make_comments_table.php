@@ -31,7 +31,8 @@ return new class extends Migration {
             cascadeOnDelete();
             $table->text('message');
             $table->text('answer')->nullable();
-            $table->enum('score', ['1', '2', '3', '4', '5']);
+            $table->enum('score', \App\Models\Comment::COMMENT_SCORE);
+            $table->enum('comment_status', \App\Models\Comment::COMMENT_STATUS)->default('Unaccepted');
             $table->softDeletes();
             $table->timestamps();
         });

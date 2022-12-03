@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\UserControllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use App\Models\Order;
@@ -17,21 +18,19 @@ class Commentcontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(CommentRequest $request)
     {
-        $request->validate([
-            'food_id' => ['nullable' ,Rule::requiredIf(is_null($request->resturant_id)), Rule::exists('foods', 'id')],
-            'resturant_id' => ['nullable', Rule::requiredIf(is_null($request->food_id)), Rule::exists('resturants' ,'id')],
-        ]);
+        $request->validatd;
 
-        if (!is_null($request->food_id)){
+        if (!is_null($request->food_id)) {
             $comments = Comment::where(['food_id' => $request->food_id, 'user_id' => auth()->user()->id])->orderByDesc('created_at')->get();
+
             return response(['Comments' => CommentResource::collection($comments)]);
         }
 
-        if (!is_null($request->resturant_id)){
+        if (!is_null($request->resturant_id)) {
             $comments = [];
-            $orders = Order::where(['resturant_id'=> $request->resturant_id, 'user_id' => auth()->user()->id])->get();
+            $orders = Order::where(['resturant_id' => $request->resturant_id, 'user_id' => auth()->user()->id])->get();
             foreach ($orders as $order) {
                 foreach ($order->comments as $comment) {
                     $comments[$comment->created_at->format('Y-m-d-H-i-s')] = $comment;
@@ -58,9 +57,6 @@ class Commentcontroller extends Controller
             'score' => 'required|integer|min:1|max:5',
             'message' => 'required|string'
         ]);
-
-
-        $order = Order::find($request->order_id);
 
             Comment::create([
                 'order_id' => $request->order_id,
