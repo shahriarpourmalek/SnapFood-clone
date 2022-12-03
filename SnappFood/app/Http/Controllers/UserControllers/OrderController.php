@@ -38,14 +38,27 @@ class OrderController extends Controller
                 $order->foods()->attach(['food_id' => $request->food_id], ['count' => $request->count]);
 
                 $totalPrice = $order->total_price;
-                $order->total_price = $totalPrice + Food::find($request->food_id)->price * $request->count;
+                if (!empty($order->foods->first()->discount)) {
+                    $order->total_price = $totalPrice + ($order->foods->first()->price - (($order->foods->first()->price / 100) * $order->foods->first()->discount->amount)) * $request->count;
+                } else {
+                    $order->total_price = $totalPrice + $order->foods->first()->price * $request->count;
+                }
                 $order->save();
             }
         } else {
+$food=Food::find($request->food_id);
+if (!empty($food->discount)) {
+    $totalPrice = ($food->price - (($food->price / 100) * $food->discount->amount)) * $request->count;
+}
+else
+{
+    $totalPrice = $food->price  * $request->count;
+
+}
             $order = Order::create([
                 'user_id' => auth()->user()->id,
                 'resturant_id' => Food::find($request->food_id)->resturant->id,
-                'total_price' => Food::find($request->food_id)->price * $request->count,
+                'total_price' => $totalPrice,
             ]);
             $order->foods()->attach(['food_id' => $request->food_id], ['count' => $request->count]);
 

@@ -32,4 +32,12 @@ class Order extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+    public function totalIncome(){
+        $total_income = 0;
+        foreach(self::all() as $order)
+        {
+            $total_income += $order->total_price;
+        }
+        return $total_income;
+    }
 }

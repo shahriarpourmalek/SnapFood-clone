@@ -37,4 +37,5 @@ public function resturant(){
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
 }
