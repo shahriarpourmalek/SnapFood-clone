@@ -26,12 +26,12 @@
         <div class=" rounded-lg ">
             <div class="flex flex-col">
                 <div class="flex flex-row justify-center gap-4">
-                    <form action="" method="post">
+                    <form action="{{ route('admin.comments.delete', $comment) }}" method="post">
                         @csrf
                         @method('DELETE')
 
                         <div class="mt-1 text-center">
-                            <button class="bg-red-200 mt-5 h-12 w-40 rounded-lg text-blue-500 text-xl font-bold" type="submit" name="id" value="{{$comment->id}}">
+                            <button class="bg-red-200 mt-5 h-12 w-40 rounded-lg text-blue-500 text-xl font-bold" type="submit" name="id">
                                 Delete
                             </button>
                         </div>

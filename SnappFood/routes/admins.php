@@ -26,7 +26,7 @@ Route::prefix('admindashboard')->group(function (){
 
     //comments manager
     Route::get('/comments-manager',[AdminCommentController::class,'index']);
-    Route::delete('/comments-manager',[AdminCommentController::class,'delete']);
+    Route::delete('{comment}/comments-manager',[AdminCommentController::class,'delete'])->name('admin.comments.delete');
 
 });
 

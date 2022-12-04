@@ -15,9 +15,9 @@ class AdminCommentController extends Controller
 
         return view('admins.comment-manager.index', ['comments' => $comments, 'foods' => $foods]);
     }
-    public function delete(Request $request)
+    public function delete(Comment $comment)
     {
-        Comment::destroy($request->id);
-        return redirect('/admindashboard/comments-manager');
+        $comment->delete();
+        return back();
     }
 }
