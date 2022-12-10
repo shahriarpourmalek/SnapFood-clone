@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admincontrollers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Models\Resturant;
 use Illuminate\Http\Request;
 
 class AdminCommentController extends Controller
@@ -11,7 +12,7 @@ class AdminCommentController extends Controller
     public function index()
     {
         $comments = Comment::where('comment_status','ShouldDelete')->get();
-        $foods = auth()->guard('manager')->user()->resturant->foods;
+        $foods = Resturant::with('foods');
 
         return view('admins.comment-manager.index', ['comments' => $comments, 'foods' => $foods]);
     }

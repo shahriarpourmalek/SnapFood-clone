@@ -13,8 +13,8 @@
     @yield('content')
 </article>
 
-<footer>
-
+<footer class="mt-[400px]" >
+@include('layouts.main_layout.footer')
 </footer>
 </body>
 </html>

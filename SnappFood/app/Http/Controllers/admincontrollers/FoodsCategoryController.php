@@ -112,6 +112,6 @@ class FoodsCategoryController extends Controller
     {
         $category = FoodsCatgory::all()->find($id)->firstOrFail();
         $category->delete();
-        return redirect('/admindashboard/foods-category');
+        return back();
     }
 }

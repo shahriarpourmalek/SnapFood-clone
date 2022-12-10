@@ -26,10 +26,8 @@ Route::prefix('managers-login')->group(function (){
 
 Route::prefix('managerdashboard')->group(function (){
 
-//manager routes
     Route::get('',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
     Route::get('/logout',[LoginManagerController::class,'destroy']);
-//resturant setting
     Route::get('/resturant-setting',[ResturantSettingController::class,'index']);
     Route::get('/resturant-setting/{id}/add-delivery-cost',[ResturantSettingController::class,'deliveryCostPage']);
     Route::put('/rsturant-setting/add-delivery-cost/{resturant_id}',[ResturantSettingController::class,'addDeliveryCost']);

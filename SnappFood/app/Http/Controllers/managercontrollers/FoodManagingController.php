@@ -36,8 +36,7 @@ class FoodManagingController extends Controller
      */
     public function create()
     {
-         $foodsCatgory = FoodsCatgory::class;
-        return view('managers.food-managing.create', ['categories' => $foodsCatgory::all()]);
+        return view('managers.food-managing.create', ['categories' => FoodsCatgory::class::all()]);
 
     }
 

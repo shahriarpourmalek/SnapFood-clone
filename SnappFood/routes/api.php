@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserControllers\CommentController;
 use App\Http\Controllers\UserControllers\AddressController;
 use App\Http\Controllers\UserControllers\AuthUserController;
+use App\Http\Controllers\UserControllers\Commentcontroller;
 use App\Http\Controllers\UserControllers\OrderController;
 use App\Http\Controllers\UserControllers\UserResturantsConroller;
 use Illuminate\Http\Request;

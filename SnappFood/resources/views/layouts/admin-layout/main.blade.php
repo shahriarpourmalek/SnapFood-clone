@@ -11,7 +11,7 @@
 
         <ul class="space-y-2 text-sm">
             <li>
-                <a href="/admindashboard" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admindashboard')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 bg-gray-200 focus:shadow-outline">
 
                     <span>Dashboard</span>
                 </a>
@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="/admindashboard/add-banner" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Adding Banner</span>
                 </a>

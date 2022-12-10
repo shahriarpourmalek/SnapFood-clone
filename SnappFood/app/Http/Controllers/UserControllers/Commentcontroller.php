@@ -7,7 +7,6 @@ use App\Http\Requests\CommentRequest;
 use App\Http\Resources\CommentResource;
 use App\Models\Comment;
 use App\Models\Order;
-use App\Rules\FoodOrderRule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
