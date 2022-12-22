@@ -6,7 +6,7 @@
 
     <div class="mx-auto mt-24 w-[70%]">
 
-        <form action="/admindashboard/discount-manager" method="post" >
+        <form action="{{route('admin.discount-manager.store')}}" method="post" >
             @csrf
             @method('POST')
             <div class="flex flex-col ">

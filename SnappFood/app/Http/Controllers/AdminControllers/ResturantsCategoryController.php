@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admincontrollers;
+namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResturantCategoryRequest;
@@ -50,7 +50,7 @@ class ResturantsCategoryController extends Controller
         ]);
         $request->file('icon')->move(public_path('images/category-images'), $newImageName);
 
-        return redirect('/admindashboard/resturant-category');
+        return redirect('/restaurant-category');
 
     }
 
@@ -96,7 +96,7 @@ return view('admins.resturant-category.show',['category'=>Category::find($id)]);
         ]);
         $request->file('icon')->move(public_path('images/category-images'), $newImageName);
 
-        return redirect('/admindashboard/resturant-category');
+        return redirect('/restaurant-category');
     }
 
     /**
@@ -108,7 +108,7 @@ return view('admins.resturant-category.show',['category'=>Category::find($id)]);
     public function destroy($id)
     {
       Category::find($id)->delete();
-        return redirect('/admindashboard/resturant-category');
+        return redirect('/restaurant-category');
 
     }
 }

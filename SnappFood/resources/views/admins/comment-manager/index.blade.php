@@ -2,6 +2,9 @@
 
 
 @section('content')
+    <div class="flex flex-row justify-center mb-10">
+        <h1 class="text-gray-500 text-4xl   ">Comment manager</h1>
+    </div>
     @foreach($comments as $comment)
 
         <div class="w-full bg-orange-300 rounded-lg flex flex-row justify-center gap-10 my-6 py-5">

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="mx-auto mt-24 w-[70%]">
-        <form action="/admindashboard/resturant-category/{{$category->id}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.restaurant-category.update',$category->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="flex flex-col ">

@@ -17,38 +17,38 @@
                 </a>
             </li>
             <li>
-                <a href="/admindashboard/resturant-category" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.restaurant-category.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Resturant Category Option</span>
                 </a>
             </li>
             <li>
-                <a href="/admindashboard/foods-category" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.foods-category.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Food Category Option</span>
                 </a>
             </li>
             <li>
-                <a href="/admindashboard/discount-manager" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.discount-manager.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Discount Manager</span>
                 </a>
             </li>
             <li>
-                <a href="/admindashboard/comments-manager" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.comment-manager.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Comment Manager</span>
                 </a>
             </li>
             <li>
-                <a href="/admindashboard/add-banner" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.banner-manager.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Adding Banner</span>
                 </a>
             </li>
 
             <li>
-                <a href="/admindashboard/logout" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('admin.logout')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Logout</span>
                 </a>

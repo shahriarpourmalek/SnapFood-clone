@@ -1,20 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\admincontrollers;
+namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DiscountRequest;
+use App\Models\Discount;
+use App\Models\FoodsCatgory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class BannerController extends Controller
+class DiscountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Discount $discount)
     {
-        //
+
+        return view('admins.discount-manager.index')->with('discounts', $discount::simplePaginate(15));
     }
 
     /**
@@ -24,24 +34,32 @@ class BannerController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admins.discount-manager.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiscountRequest $request)
     {
-        //
+        $request->validated();
+        Discount::create([
+            'title' => $request->title,
+            'expire_time' => $request->expire_time,
+            'amount' => $request->amount
+        ]);
+
+        return redirect('/discount-manager');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -52,7 +70,7 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -63,8 +81,8 @@ class BannerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -75,11 +93,12 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy( $discount)
     {
-        //
+        Discount::find($discount)->delete();
+        return back();
     }
 }

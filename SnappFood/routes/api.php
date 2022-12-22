@@ -4,6 +4,7 @@ use App\Http\Controllers\UserControllers\AddressController;
 use App\Http\Controllers\UserControllers\AuthUserController;
 use App\Http\Controllers\UserControllers\Commentcontroller;
 use App\Http\Controllers\UserControllers\OrderController;
+use App\Http\Controllers\UserControllers\SearchController;
 use App\Http\Controllers\UserControllers\UserResturantsConroller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,8 @@ Route::delete('/delete',[OrderController::class,'delete']);
 
     Route::patch('/update/{id}', [AuthUserController::class, 'update']);
     Route::post('/logout', [AuthUserController::class, 'logout']);
+
+    Route::get('/search.nears',[SearchController::class,'findResturant']);
 });
 
 

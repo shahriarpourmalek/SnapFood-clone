@@ -1,30 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\admincontrollers;
+namespace App\Http\Controllers\AdminControllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DiscountRequest;
-use App\Models\Discount;
-use App\Models\FoodsCatgory;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class DiscountController extends Controller
+class BannerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Discount $discount)
+    public function index()
     {
-
-        return view('admins.discount-manager.index')->with('discounts', $discount::all());
+        //
     }
 
     /**
@@ -34,32 +24,24 @@ class DiscountController extends Controller
      */
     public function create()
     {
-
-        return view('admins.discount-manager.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DiscountRequest $request)
+    public function store(Request $request)
     {
-        $request->validated();
-        Discount::create([
-            'title' => $request->title,
-            'expire_time' => $request->expire_time,
-            'amount' => $request->amount
-        ]);
-
-        return redirect('/admindashboard/discount-manager');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +52,7 @@ class DiscountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -81,8 +63,8 @@ class DiscountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -93,12 +75,11 @@ class DiscountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Discount::all()->find($id)->firstOrFail()->delete();
-        return back();
+        //
     }
 }

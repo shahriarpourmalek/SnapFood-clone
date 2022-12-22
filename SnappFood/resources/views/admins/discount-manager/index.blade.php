@@ -3,7 +3,10 @@
 
 
 @section('content')
-    <a class="flex flex-row justify-center" href="/admindashboard/discount-manager/create">
+    <div class="flex flex-row justify-center mb-10">
+        <h1 class="text-gray-500 text-4xl   ">dicount manager</h1>
+    </div>
+    <a class="flex flex-row justify-center" href="/discount-manager/create">
         <div
             class="text-2xl font-bold flex flex-row justify-center h-20 w-[350px] bg-orange-500 text-gray-200 rounded-lg pt-5">
             Add Discount
@@ -18,10 +21,10 @@
                     <h3 class="text-2xl text-white" >expires at:  {{$discount->expire_time}}</h3>
                 </div>
 
-                    <form class="flex flex-col justify-center mr-5" action="/admindashboard/discount-manager/{{$discount->id}}" method="post" >
+                    <form class="flex flex-col justify-center mr-5" action="{{route("admin.discount-manager.delete",$discount)}}" method="post" >
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-500 text-white rounded-lg h-[30px] w-[50px] " href="/admindashboard/discount-manager/{{$discount->id}}">
+                        <button type="submit" class="bg-red-500 text-white rounded-lg h-[30px] w-[50px] " name="id">
                             Delete
                         </button>
                     </form>
