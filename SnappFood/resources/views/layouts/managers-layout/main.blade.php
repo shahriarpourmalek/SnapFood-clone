@@ -11,13 +11,13 @@
 
         <ul class="space-y-2 text-sm">
             <li>
-                <a href="/managerdashboard" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managerdashboard')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 bg-gray-200 focus:shadow-outline">
 
                     <span>Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/resturant-info" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.restaurant-info.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Completing resturant info</span>
                 </a>

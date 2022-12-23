@@ -6,7 +6,7 @@
 
 
     <div class="mx-auto mt-24 w-[70%]">
-        <form action="/managerdashboard/resturant-info/{{$resturant->id}}" method="post">
+        <form action="{{route("managers.restaurant-info.update",$resturant->id)}}" method="post">
             @csrf
             @method('PUT')
             <div class="flex flex-col ">

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 //sign up routes
 Route::prefix('managers-register')->group(function (){
-    Route::get('', [RegisterManagerController::class , 'create']);
+    Route::get('', [RegisterManagerController::class , 'create'])->name('manager-register');
     Route::post('', [RegisterManagerController::class , 'store'])->name('managers-register');
 });
 //manager login routes
@@ -24,9 +24,9 @@ Route::prefix('managers-login')->group(function (){
     Route::post('',[LoginManagerController::class,'authenticate'])->name('managers-login');
 });
 
-Route::prefix('managerdashboard')->group(function (){
+Route::group(['middleware' => 'auth:manager'], function () {
+    Route::get('managerdashboard',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
 
-    Route::get('',[ManagerDashboardController::class,'dashboard'])->name('managerdashboard');
     Route::get('/logout',[LoginManagerController::class,'destroy']);
     Route::get('/resturant-setting',[ResturantSettingController::class,'index']);
     Route::get('/resturant-setting/{id}/add-delivery-cost',[ResturantSettingController::class,'deliveryCostPage']);
@@ -38,8 +38,16 @@ Route::prefix('managerdashboard')->group(function (){
 
 
 
-//managers resturant controller
-    Route::resource('/resturant-info',ResturantController::class);
+    Route::resource('restaurant-info',ResturantController::class, ['names' => [
+        'index' => 'managers.restaurant-info.index',
+        'create' => 'managers.restaurant-info.create',
+        'show' => 'managers.restaurant-info.show',
+        'edit' => 'managers.restaurant-info.edit',
+        'store' => 'managers.restaurant-info.store',
+        'update' => 'managers.restaurant-info.update',
+        'destroy' => 'managers.restaurant-info.delete'
+    ]
+    ]);
     //managers foods managing controller
     Route::resource('/food-managing',FoodManagingController::class);
     Route::get('/food-managing/{id}/add-discount',[AddDiscountController::class,'discount']);

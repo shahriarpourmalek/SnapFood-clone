@@ -24,7 +24,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
         'destroy' => 'admin.foods-category.delete'
     ]
     ]);
-
     Route::resource('discount-manager', DiscountController::class,['names' => [
         'index' => 'admin.discount-manager.index',
         'store' => 'admin.discount-manager.store',
@@ -39,11 +38,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         'destroy' => 'admin.banner-manager.delete'
     ]
     ]);
-
-
     Route::get('comments-manager', [AdminCommentController::class, 'index'])->name('admin.comment-manager.index');
     Route::delete('{comment}/comments-manager', [AdminCommentController::class, 'delete'])->name('admin.comments.delete');
-
     Route::resource('restaurant-category', ResturantsCategoryController::class, ['names' => [
         'index' => 'admin.restaurant-category.index',
         'create' => 'admin.restaurant-category.create',

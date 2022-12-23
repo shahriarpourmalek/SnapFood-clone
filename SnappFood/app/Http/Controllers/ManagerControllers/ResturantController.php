@@ -65,7 +65,7 @@ class ResturantController extends Controller
 
         }
 
-        return redirect('/managerdashboard/resturant-info');
+        return redirect('/restaurant-info');
     }
 
     /**
@@ -120,7 +120,7 @@ class ResturantController extends Controller
             'delivery_cost' => $request->delivery_cost
         ]);
         $request->user()->resturant()->find($id)->categories()->attach($request->category);
-        return redirect('/managerdashboard/resturant-info');
+        return redirect('/restaurant-info');
 
     }
 

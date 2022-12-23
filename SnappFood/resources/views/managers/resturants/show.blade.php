@@ -21,7 +21,7 @@
             @endforeach
         </div>
 
-        <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center" href="/managerdashboard/resturant-info/{{$resturant->id}}">
+        <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center" href="{{route('managers.restaurant-info.show',$resturant->id)}}">
             show                    </a>
 
     </div>

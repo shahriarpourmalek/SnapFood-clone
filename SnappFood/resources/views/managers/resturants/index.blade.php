@@ -4,7 +4,7 @@
 @section('content')
 
     @if(!\Illuminate\Support\Facades\Auth::guard('manager')->user()->resturant()->first())
-        <a class="flex flex-row justify-center" href="/managerdashboard/resturant-info/create">
+        <a class="flex flex-row justify-center" href="{{route('managers.restaurant-info.create')}}">
             <div
                 class="text-2xl font-bold flex flex-row justify-center h-20 w-[350px] bg-orange-500 text-gray-200 rounded-lg pt-5">
                 your address
@@ -32,10 +32,10 @@
         </div>
         <div class="flex flex-col justify-center gap-10 mr-16">
             <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
-               href="/managerdashboard/resturant-info/{{$resturant->id}}">
+               href="{{route('managers.restaurant-info.show',$resturant->id)}}">
                 show </a>
             <a class="ml-12 bg-yellow-400 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
-               href="/managerdashboard/resturant-info/{{$resturant->id}}/edit">
+               href="{{route('managers.restaurant-info.edit',$resturant->id)}}">
                 edit </a>
         </div>
     </div>
