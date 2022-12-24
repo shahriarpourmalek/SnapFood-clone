@@ -10,11 +10,7 @@
                 <p> comment from:   {{$comment->user->name}}</p>
 
             </div>
-            <div class="text-gray-700  flex flex-col  ">
-                <p> food info</p>
-                <p> food name:   {{$comment->food->name}}</p>
 
-            </div>
             <div class="text-gray-700  flex flex-col  ">
                 <p>comment status: {{$comment->comment_status}}</p>
                 <p>comment maasage : {{ $comment->message }}</p>
@@ -26,7 +22,7 @@
         <div class=" rounded-lg ">
             <div class="flex flex-col">
 
-                <form class="" action="" method="post">
+                <form class="" action="{{route('managers.comment-manager.answer',$comment->id)}}" method="post">
                     @csrf
                     @method('put')
                     <input type="hidden" name="id" value="{{ $comment->id }}">
@@ -36,7 +32,7 @@
                     </div>
                 </form>
                 <div class="flex flex-row justify-center gap-4">
-                <form action="" method="post">
+                <form action="{{route('managers.comment-manager.accept',$comment->id)}}" method="post">
                     @csrf
                     @method('put')
 
@@ -46,7 +42,7 @@
                         </button>
                     </div>
                 </form>
-                    <form action="" method="post">
+                    <form action="{{route('managers.comment-manager.deleterequest',$comment->id)}}" method="post">
                         @csrf
                         @method('put')
 

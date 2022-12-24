@@ -5,7 +5,7 @@
 
 
     <div class="mx-auto mt-24 w-[70%]">
-        <form action="/managerdashboard/rsturant-setting/add-delivery-cost/{{$resturant->id}}" method="post">
+        <form action="{{route('managers.restaurant-setting.store-delivery-cost',$resturant->id)}}" method="post">
             @csrf
             @method('PUT')
 

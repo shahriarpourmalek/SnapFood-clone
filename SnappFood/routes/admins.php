@@ -16,10 +16,13 @@ Route::prefix('admins-login')->group(function () {
 });
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::get('admindashboard', [AdminPageController::class, 'index'])->name('admindashboard');
-    Route::get('logout', [AdminLoginController::class, 'destroy'])->name('admin.logout');
+    Route::post('logout', [AdminLoginController::class, 'destroy'])->name('admin.logout');
     Route::resource('foods-category', FoodsCategoryController::class, ['names' => [
         'index' => 'admin.foods-category.index',
+        'show' => 'admin.foods-category.show',
         'store' => 'admin.foods-category.store',
+        'create' => 'admin.foods-category.create',
+        'edit' => 'admin.foods-category.edit',
         'update' => 'admin.foods-category.update',
         'destroy' => 'admin.foods-category.delete'
     ]

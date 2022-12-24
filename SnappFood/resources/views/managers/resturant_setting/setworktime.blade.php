@@ -8,7 +8,7 @@
         @foreach($days as $day)
 
         <label class="text-black text-2xl  ">{{$day}}</label>
-        <form class="flex flex-row justify-between" action="/managerdashboard/resturant-setting/working-time" method="post">
+        <form class="flex flex-row justify-between" action="{{route('managers.restaurant-setting.storeworktime')}}" method="post">
             @csrf
             @method('POST')
 

@@ -3,7 +3,7 @@
 
 
 @section('content')
-    <form action="/managerdashboard/food-managing/add-discount/{{$food->id}}" method="post" >
+    <form action="{{route('managers.food-managing.add-discount',$food->id)}}" method="post" >
         @csrf
         @method('PUT')
 <div class="flex flex-col ">

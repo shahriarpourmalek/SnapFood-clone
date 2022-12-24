@@ -23,43 +23,43 @@
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/food-managing" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.food-managing.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Food ManageMent</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/resturant-setting" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.restaurant-setting.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Setting of resturant</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/manage-orders" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.manage-orders.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Order Management</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/archive-of-orders" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.manage-orders.archives')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Archive Of Orders</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/reports" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.reports.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Reports</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/comment-manager" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.comment-manager.index')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Comment  Manager</span>
                 </a>
             </li>
             <li>
-                <a href="/managerdashboard/logout" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="{{route('managers.logout')}}" class="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
 
                     <span>Logout</span>
                 </a>

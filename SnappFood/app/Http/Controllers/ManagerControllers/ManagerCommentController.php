@@ -29,28 +29,25 @@ class ManagerCommentController extends Controller
         $foods = auth()->guard('manager')->user()->resturant->foods;
         return view('managers.comments-manager.index', ['comments' => $comments, 'foods' => $foods]);
     }
-    public function answer(Request $request)
+    public function answer(Request $request,$id)
     {
-        $comment = Comment::find($request->id);
+        $comment = Comment::find($id);
         $comment->answer = $request->answer;
         $comment->save();
-
-        return redirect('managerdashboard/comment-manager');
+        return redirect('/comment-manager');
     }
-    public function accept(Request $request)
+    public function accept($id)
     {
-        $comment = Comment::find($request->id)->update([
+        $comment = Comment::find($id)->update([
             'comment_status' => 'Accepted'
         ]);
-
-        return redirect('managerdashboard/comment-manager');
+        return redirect('/comment-manager');
     }
-    public function deleteRequest(Request $request)
+    public function deleteRequest($id)
     {
-        $comment = Comment::find($request->id)->update([
+        $comment = Comment::find($id)->update([
             'comment_status' => 'ShouldDelete'
         ]);
-
-        return redirect('managerdashboard/comment-manager');
+        return redirect('/comment-manager');
     }
 }

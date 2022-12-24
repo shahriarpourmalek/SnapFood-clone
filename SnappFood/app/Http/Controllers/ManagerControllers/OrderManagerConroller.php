@@ -62,7 +62,7 @@ class OrderManagerConroller extends Controller
         ]);
         SendEmailJob::dispatch($order);
 
-        return redirect('/managerdashboard/manage-orders');
+        return redirect('/manage-orders');
     }
 
     public function archives(Request $request)

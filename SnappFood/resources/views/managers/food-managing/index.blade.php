@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <a class="flex flex-row justify-center" href="/managerdashboard/food-managing/create">
+    <a class="flex flex-row justify-center" href="{{route('managers.food-managing.create')}}">
         <div
             class="text-2xl font-bold flex flex-row justify-center h-20 w-[350px] bg-orange-500 text-gray-200 rounded-lg pt-5">
             add Food
@@ -44,14 +44,14 @@
                                     {{$food->raw_material}}
                                 </p>
                                 <div class="flex flex-row  justify-between">
-                                    <a href="/managerdashboard/food-managing/{{$food->id}}/edit"
+                                    <a href="{{route('managers.food-managing.edit',$food->id)}}"
                                        class="text-body-color bg-yellow-300 hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 w-[150px] text-base font-medium transition hover:text-white">
                                         edit details
                                     </a>
-                                    <form action="/managerdashboard/food-managing/{{$food->id}}" method="post">
+                                    <form action="{{route('managers.food-managing.delete',$food->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" href="/admindashboard/foods-category/{{$food->id}}"
+                                        <button type="submit"
                                                 class="text-gray-300 bg-red-400 hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 w-[150px] text-base font-medium transition hover:text-white">
                                             Delete Food
                                         </button>
@@ -62,7 +62,7 @@
                                        class="text-body-color bg-blue-400 hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 w-[150px] text-base font-medium transition hover:text-white">
                                         add to food party
                                     </a>
-                                    <a href="/managerdashboard/food-managing/{{$food->id}}/add-discount"
+                                    <a href="{{route('managers.food-managing.add-discount',$food->id)}}"
                                        class="text-body-color bg-green-500 hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 w-[150px] text-base font-medium transition hover:text-white">
                                         add discount
                                     </a>

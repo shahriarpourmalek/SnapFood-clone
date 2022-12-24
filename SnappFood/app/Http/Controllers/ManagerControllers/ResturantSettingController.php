@@ -51,7 +51,7 @@ class ResturantSettingController extends Controller
         $resturant = $request->user('manager')->resturant()->where('id', $id)->update([
             'delivery_cost' => $request->delivery_cost
         ]);
-        return redirect('/managerdashboard/resturant-setting');
+        return redirect('/restaurant-setting');
     }
 
 
@@ -78,9 +78,9 @@ class ResturantSettingController extends Controller
             'day_of_week' => $request->day_of_week,
             'open_time' => $request->open_time,
             'close_time' => $request->close_time,
-            'resturant_id' => auth()->guard('manager')->id()
+            'resturant_id' => Auth::guard('manager')->user()->resturant()->get()->first()->id
         ]);
-        return redirect('/managerdashboard/resturant-setting/working-time');
+        return redirect('/restaurant-setting/working-time');
     }
 
 
@@ -110,7 +110,7 @@ Schedule::all()->where('resturant_id',$id)->first()->update([
     'close_time' => $request->close_time,
     'resturant_id' => Auth::guard('manager')->user()->resturant()->get()->first()->id
 ]);
-        return redirect('/managerdashboard/resturant-setting/working-time');
+        return redirect('/restaurant-setting/working-time');
 
     }
 }

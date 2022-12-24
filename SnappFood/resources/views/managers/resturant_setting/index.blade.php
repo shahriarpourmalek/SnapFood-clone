@@ -24,22 +24,22 @@
             </div>
             <div class="flex flex-col justify-center gap-10 mr-16">
                 <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
-                   href="/managerdashboard/resturant-info/{{$resturant->id}}">
+                   href="{{route('managers.restaurant-info.show',$resturant->id)}}">
                     show </a>
                 <a class="ml-12 bg-green-500 text-white rounded-lg h-[30px] w-[60px] flex justify-center"
-                   href="/managerdashboard/resturant-info/{{$resturant->id}}/edit">
+                   href="{{route('managers.restaurant-info.edit',$resturant->id)}}">
                 change  </a>
             </div>
         </div>
     @endif
     <div class="flex flex-row gap-10">
-    <a href="/managerdashboard/resturant-setting/{{$resturant->id}}/add-delivery-cost">
+    <a href="{{route('managers.restaurant-setting.add-delivery-cost',$resturant->id)}}">
 <div class="mt-16 rounded-lg  w-[300px] h-[70px] bg-indigo-500 text-white text-center flex flex-col justify-center">add delivery cost</div>
     </a>
-        <a href="/managerdashboard/resturant-setting/working-time">
+        <a href="{{route('managers.restaurant-setting.worktimepage')}}">
             <div class="mt-16 rounded-lg  w-[300px] h-[70px] bg-indigo-500 text-white text-center flex flex-col justify-center">set worktime</div>
         </a>
-        <a href="/managerdashboard/resturant-setting/{{$resturant->id}}/working-time">
+        <a href="{{route('managers.restaurant-setting.editworktime',$resturant->id)}}">
             <div class="mt-16 rounded-lg  w-[300px] h-[70px] bg-indigo-500 text-white text-center flex flex-col justify-center">edit worktime</div>
         </a>
     </div>

@@ -49,9 +49,7 @@ class FoodManagingController extends Controller
     public function store(AddFoodRequest $request)
     {
         $request->validated();
-
         $newImageName = time() . '-' . $request->name . '.' . $request->file('image')->guessExtension();
-
         Food::create([
             'name' => $request->name,
             'raw_material' => $request->raw_material,
@@ -62,7 +60,7 @@ class FoodManagingController extends Controller
         ]);
         $request->file('image')->move(public_path('images/foods-image'), $newImageName);
 
-        return redirect('/managerdashboard/food-managing');
+        return redirect('/food-managing');
     }
 
     /**
@@ -100,7 +98,7 @@ class FoodManagingController extends Controller
             'resturant_id' => $request->user('manager')->resturant()->first()->id,
         ]);
         $request->file('image')->move(public_path('images/foods-image'), $newImageName);
-        return redirect('/managerdashboard/food-managing');
+        return redirect('/food-managing');
     }
 
     /**
@@ -112,7 +110,7 @@ class FoodManagingController extends Controller
     public function destroy($id)
     {
         Food::destroy($id);
-        return redirect('/managerdashboard/food-managing');
+        return back();
     }
 
 

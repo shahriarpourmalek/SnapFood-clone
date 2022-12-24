@@ -43,18 +43,14 @@ class FoodsCategoryController extends Controller
     public function store(FoodsCategoryRequest $request)
     {
         $request->validated();
-
         $newImageName = time() .'-'.$request->name.'.'.$request->file('icon')->guessExtension();
-
-
         FoodsCatgory::create([
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
             'icon' => $newImageName
         ]);
         $request->file('icon')->move(public_path('images/foods-category-images'),$newImageName);
-
-        return redirect('/admindashboard/foods-category');
+        return redirect('/foods-category');
     }
 
     /**
@@ -77,7 +73,7 @@ class FoodsCategoryController extends Controller
     public function edit($id)
     {
 
-        return view('admins.foods-category.edit')->with('category',    FoodsCatgory::find($id));
+        return view('admins.foods-category.edit')->with('category',FoodsCatgory::find($id));
     }
 
     /**
@@ -98,8 +94,7 @@ class FoodsCategoryController extends Controller
             'icon' => $newImageName
         ]);
         $request->file('icon')->move(public_path('images/foods-category-images'),$newImageName);
-
-        return redirect('/admindashboard/foods-category');
+        return redirect('/foods-category');
     }
 
     /**
@@ -110,8 +105,7 @@ class FoodsCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = FoodsCatgory::all()->find($id)->firstOrFail();
-        $category->delete();
+        $category = FoodsCatgory::find($id)->delete();
         return back();
     }
 }

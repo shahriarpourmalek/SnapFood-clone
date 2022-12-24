@@ -4,7 +4,7 @@
 @section('content')
 
   <div class="text-4xl text-gray-800 bold flex  flex-row justify-center mb-16">archive</div>
-    <form action="/managerdashboard/manage-orders" method="post">
+    <form action="{{route('managers.manage-orders.index')}}" method="post">
         <div class=" m-auto bg-dark w-100 text-center">
             <select class="form-select" name="filter" data-select2-id="1" tabindex="-1" aria-hidden="true">
                 <option value="all" selected>All</option>
@@ -44,11 +44,7 @@
                         @endforeach
                     </div>
 
-                    <a  href="/managerdashboard/manage-orders/{{$order->id}}">
-                        <div class=" ml-44  w-40 h-16 bg-blue-200 rounded-lg flex justify-center pt-5">
-                            manage order
-                        </div>
-                    </a>
+
                 </div>
             @endif
         @endforeach

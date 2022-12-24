@@ -7,7 +7,7 @@
     <h2 class="text-4xl flex justify-center font-bold mb-6 text-gray-900">Edit {{$food->name}}</h2>
 
     <div class="mx-auto mt-24 w-[70%]">
-        <form action="/managerdashboard/food-managing/{{$food->id}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('managers.food-managing.update',$food->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="flex flex-col ">

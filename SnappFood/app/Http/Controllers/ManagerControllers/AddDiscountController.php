@@ -28,7 +28,7 @@ class AddDiscountController extends Controller
         Food::find($id)->update([
             'discount_id' => $request->discount
         ]);
-        return redirect('/managerdashboard/food-managing');
+        return redirect('/food-managing');
 
     }
 }

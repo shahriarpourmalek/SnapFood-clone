@@ -33,7 +33,7 @@
             </div>
 
     </div>
-<form action="/managerdashboard/manage-orders/{{$order->id}}" method="post">
+<form action="{{route('managers.manage-orders.update',$order->id)}}" method="post">
     @csrf
     @method('PUT')
         <select class="bg-indigo-500 text-white w-full h-10 rounded-lg" name="status" >

@@ -6,7 +6,7 @@
 
     <div class="mx-auto mt-24 w-[70%]">
 
-        <form action="/admindashboard/foods-category" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.foods-category.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <div class="flex flex-col ">
