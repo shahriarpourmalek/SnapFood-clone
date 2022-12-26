@@ -13,7 +13,7 @@ class Banner extends Model
     protected $table = 'banners';
     protected $fillable = [
         'title',
-        'banners',
+        'banner_img',
         'expires_at'
     ];
 

@@ -4,7 +4,7 @@
     @vite('resources/css/app.css')
 
 </head>
-<body class="">
+<body class="bg-lime-200">
 <header>
     @include('layouts.main_layout.header')
 </header>

@@ -54,4 +54,15 @@ Route::group(['middleware' => 'auth:admin'], function () {
     ]
     ]);
 
+    Route::resource('banner-manager', BannerController::class, ['names' => [
+        'index' => 'admin.banner-manager.index',
+        'create' => 'admin.banner-manager.create',
+        'show' => 'admin.banner-manager.show',
+        'edit' => 'admin.banner-manager.edit',
+        'store' => 'admin.banner-manager.store',
+        'update' => 'admin.banner-manager.update',
+        'destroy' => 'admin.banner-manager.delete'
+    ]
+    ]);
+
 });
