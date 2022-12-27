@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\LoginController;
+use App\Models\Banner;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
-    return view('index');
+
+    return view('index',['banners'=>Banner::all()]);
 });
 Route::get('login',[LoginController::class,'index'])->name('login');
 

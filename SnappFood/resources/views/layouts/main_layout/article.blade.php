@@ -1,4 +1,13 @@
 <article>
+    @if(!empty($banners))
+    @foreach($banners as $banner)
+        <div class="w-full h-50">
+            <img src="{{asset("images/banner-images/$banner->banner_img")}}" class=" w-full h-[200px] ">
+        </div>
+
+    @endforeach
+    @endif
+
     <div class="flex flex-col  mx-16 mt-24 relative">
         <div class="flex flex-row justify-center ">
             <div class="bg-gray-200 shadow-lg w-[1400px]  h-[700px] rounded-br-3xl rounded-tl-3xl flex flex-row justify-between p-7 ">

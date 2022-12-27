@@ -56,7 +56,7 @@ Route::delete('/delete',[OrderController::class,'delete']);
     Route::patch('/update/{id}', [AuthUserController::class, 'update']);
     Route::post('/logout', [AuthUserController::class, 'logout']);
 
-    Route::get('/search.nears',[SearchController::class,'findResturant']);
+    Route::get('/search-nears',[SearchController::class,'findRestaurant']);
 });
 
 

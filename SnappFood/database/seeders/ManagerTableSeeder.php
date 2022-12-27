@@ -33,5 +33,11 @@ class ManagerTableSeeder extends Seeder
             'phone' => '09127845623',
             'password' => bcrypt('12345678'),
         ]);
+        Manager::create([
+            'name' => 'morteza',
+            'email' => 'morteza@gmail.com',
+            'phone' => '09122435623',
+            'password' => bcrypt('12345678'),
+        ]);
     }
 }
